@@ -4,14 +4,17 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class PlayerCharacterComponent {
-    private final PlayerEntity player;
     private ActiveCharacter activeCharacter;
     private boolean hasActiveCharacter = false;
     
-    public PlayerCharacterComponent(PlayerEntity player) {
-        this.player = player;
+    public PlayerCharacterComponent() {
+        // 无需参数，组件由系统管理
     }
-    
+
+    public static void register() {
+
+    }
+
     public boolean hasActiveCharacter() {
         return hasActiveCharacter;
     }

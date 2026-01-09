@@ -7,13 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class CharacterTemplate {
-    private String name;
-    private ElementalType elementalType;
-    private CharacterAttributes baseAttributes;
-    private LevelGrowth levelGrowth;
-    private int maxLevel;
+    private final String name;
+    private final ElementalType elementalType;
+    private final CharacterAttributes baseAttributes;
+    private final LevelGrowth levelGrowth;
+    private final int maxLevel;
     private final List<CharacterTrait> traits;
-    private String id;
+    private final String id;
     
     public CharacterTemplate(String id, String name, ElementalType elementalType, CharacterAttributes baseAttributes,
                            LevelGrowth levelGrowth, int maxLevel) {

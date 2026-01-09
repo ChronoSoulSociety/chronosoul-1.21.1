@@ -20,8 +20,8 @@ public class ElementalUtils {
         
         int newAmount = stack1.getAmount() + stack2.getAmount();
         float newIntensity = (stack1.getIntensity() + stack2.getIntensity()) / 2.0f;
-        int newDuration = stack1.isInfinite() || stack2.isInfinite() ? 0 : Math.max(stack1.getDurationTicks(), stack2.getDurationTicks());
         boolean isInfinite = stack1.isInfinite() || stack2.isInfinite();
+        int newDuration = isInfinite ? 0 : Math.max(stack1.getDurationTicks(), stack2.getDurationTicks());
         
         return new ElementalStack(stack1.getType(), newAmount, newDuration, newIntensity);
     }

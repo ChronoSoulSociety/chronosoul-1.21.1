@@ -1,6 +1,6 @@
 package com.chronosoulsociety.chronosoul.core.gui;
 
-import com.chronosoulsociety.chronosoul.gameplay.character.PlayerCharacterComponent;
+import com.chronosoulsociety.chronosoul.client.ClientCharacterManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -50,15 +50,14 @@ public class QingLaiSkillBarHud {
             return;
         }
         
-        // 使用PlayerCharacterComponent检查玩家是否拥有活跃角色，以及角色的模板ID是否为"qing_lai"
-        PlayerCharacterComponent characterComponent = PlayerCharacterComponent.get(player);
-        if (characterComponent == null || !characterComponent.hasActiveCharacter() || 
-            !characterComponent.getActiveCharacter().getTemplateId().equals("qing_lai")) {
-            return;
-        }
+        // 获取当前激活的角色ID
+        String activeChar = ClientCharacterManager.getActiveCharacter();
         
-        renderSkillBar(context, tickDelta);
-        renderTooltip(context, tickDelta);
+        // 只有当角色是青籁时才渲染技能栏
+        if (activeChar != null && activeChar.equals("qing_lai")) {
+            renderSkillBar(context, tickDelta);
+            renderTooltip(context, tickDelta);
+        }
     }
     
     private void renderSkillBar(DrawContext context, float tickDelta) {
@@ -69,23 +68,11 @@ public class QingLaiSkillBarHud {
         // 计算起始位置
         int totalWidth = SLOT_WIDTH * 3 + SLOT_SPACING * 2;
         int startX = screenWidth - (totalWidth + RIGHT_MARGIN);
-        int startY = screenHeight - BOTTOM_MARGIN;
+        int y = screenHeight - BOTTOM_MARGIN;
         
-        // 获取玩家的活跃角色
-        PlayerEntity player = client.player;
-        if (player == null) {
-            return;
-        }
-        
-        PlayerCharacterComponent characterComponent = PlayerCharacterComponent.get(player);
-        if (characterComponent == null || !characterComponent.hasActiveCharacter()) {
-            return;
-        }
-        
-        // 绘制三个技能槽
+        // 绘制三个技能槽（暂时跳过角色检查，直接渲染用于测试）
         for (int i = 0; i < 3; i++) {
             int x = startX + i * (SLOT_WIDTH + SLOT_SPACING);
-            int y = startY;
             
             // 1. 绘制背景槽
             renderSlotBackground(context, x, y);

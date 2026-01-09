@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActiveCharacter {
-    private String templateId;
+    private final String templateId;
     private CharacterAttributes currentAttributes;
     private int level = 1;
     private long experience = 0;
@@ -126,8 +126,8 @@ public class ActiveCharacter {
     public void addElementalEnergy(float amount) {
         this.elementalEnergy += amount;
         // 从角色模板获取最大能量值，默认为100
-        CharacterTemplate template = CharacterManager.getCharacterTemplate(templateId);
-        float maxEnergy = template != null ? 100 : 100; // 后续可扩展为模板配置
+        // CharacterTemplate template = CharacterManager.getCharacterTemplate(templateId);
+        float maxEnergy = 100; // 后续可扩展为模板配置
         if (this.elementalEnergy > maxEnergy) {
             this.elementalEnergy = maxEnergy;
         }

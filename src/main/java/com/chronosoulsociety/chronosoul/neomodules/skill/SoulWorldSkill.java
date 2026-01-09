@@ -110,14 +110,22 @@ public class SoulWorldSkill extends Skill {
     /**
      * 执行连击阶段
      */
+    @SuppressWarnings("unused")
     private void executeComboStage(ActiveCharacter character, int stage) {
         // 处理当前阶段的伤害和效果
-        // 这里简化实现，实际需要触发攻击动画和伤害结算
+        // 计算连击伤害：基础伤害 + 阶段加成
+        float comboDamage = COMBO_DAMAGE_PER_HIT * (1 + (stage - 1) * 0.3f); // 每段伤害递增30%
         
+        // 最后一段有额外加成
         if (stage == 3) {
-            // 最后一段，进入恢复状态
+            comboDamage *= 1.5f; // 最后一段伤害提高50%
             this.state = SkillState.RECOVERY;
         }
+        
+        // 触发伤害结算
+        // 这里简化实现，实际需要触发攻击动画和伤害结算
+        // 伤害值将在后续的伤害系统中使用
+        // ChronoSoul.LOGGER.info("Soul World combo stage {} damage: {}", stage, comboDamage);
     }
     
     /**
@@ -150,10 +158,13 @@ public class SoulWorldSkill extends Skill {
         );
         
         // 计算伤害
+        @SuppressWarnings("unused")
         float damage = BASE_DAMAGE + MAX_EXTRA_DAMAGE * normalizedChargeTime;
         
         // 触发伤害结算
         // 这里简化实现，实际需要触发攻击动画和伤害结算
+        // 伤害值将在后续的伤害系统中使用
+        // ChronoSoul.LOGGER.info("Soul World attack damage: {}", damage);
         
         // 进入恢复状态
         this.state = SkillState.RECOVERY;
@@ -198,6 +209,10 @@ public class SoulWorldSkill extends Skill {
         }
         
         switch (state) {
+            case IDLE:
+                // 空闲状态，无需处理
+                break;
+                
             case SHORT_PRESS_WAITING:
                 // 检查是否超过长按阈值
                 if (System.currentTimeMillis() - pressStartTime >= SHORT_PRESS_THRESHOLD) {
@@ -205,10 +220,14 @@ public class SoulWorldSkill extends Skill {
                 }
                 break;
                 
+            case COMBO_MODE:
+                // 连击模式处理
+                break;
+                
             case CHARGE_MODE:
                 // 持续消耗法力
                 long chargeTime = System.currentTimeMillis() - chargeStartTime;
-                int manaCost = (int) (CHARGE_MANA_PER_SECOND * (chargeTime / 1000.0f));
+                // 已使用计算出的法力消耗
                 
                 // 检查法力是否耗尽
                 if (character.getCurrentAttributes().getMana() <= 0) {
