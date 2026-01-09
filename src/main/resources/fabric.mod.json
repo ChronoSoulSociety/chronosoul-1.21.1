@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "chrono_soul",
+  "version": "0.1.3-alpha.2",
+  "name": "Chrono Soul: Beyond Life and Death",
+  "description": "A cross-world RPG mod where death is not the end—your soul evolves eternally. Features persistent character progression, dynamic skills, elemental reactions, and more.",
+  "authors": [
+    "ChronoSoulSociety"
+  ],
+  "contact": {
+    "homepage": "https://github.com/ChronoSoulSociety/ChronoSoul",
+    "sources": "https://github.com/ChronoSoulSociety/ChronoSoul",
+    "issues": "https://github.com/ChronoSoulSociety/ChronoSoul/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/chrono_soul/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.chronosoulsociety.chronosoul.ChronoSoul"
+    ],
+    "fabric-datagen": [
+      "com.chronosoulsociety.chronosoul.ChronoSoulDataGenerator"
+    ]
+  },
+  "mixins": [
+    "chrono_soul.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": "～1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "cloth-config": "*"
+  }
+}

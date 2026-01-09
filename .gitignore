@@ -1,0 +1,71 @@
+# ========================
+# Build & Runtime Outputs
+# ========================
+/build/
+/out/
+/bin/
+/classes/
+/run/
+
+# ========================
+# Gradle
+# ========================
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# ========================
+# IDE - IntelliJ IDEA
+# ========================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ========================
+# IDE - Eclipse
+# ========================
+.settings/
+.classpath
+.project
+*.launch
+
+# ========================
+# IDE - VS Code
+# ========================
+.vscode/
+
+# ========================
+# Java & JVM
+# ========================
+*.log
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# ========================
+# OS - macOS
+# ========================
+.DS_Store
+
+# ========================
+# OS - Windows
+# ========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ========================
+# Local Config (Never Commit)
+# ========================
+/local.properties
+/config/
+*.env
+.env
+
+# ========================
+# Minecraft Client Cache (Critical!)
+# ========================
+.minecraft/
